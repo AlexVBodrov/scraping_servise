@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'scraping/base.html' %}
 
-</body>
-</html>
+{% block title %}
+        Джанго Home Page SCR servise
+{% endblock %}
+
+{%  block body %}
+
+    <h1>Джанго Home Page SCR servise</h1>
+    <h4>Сегодня : {{ date }}</h4>
+    <h4>Имя пользователя : {{ name }}</h4>
+    <br><hr>
+
+    <h4>Вакансии</h4>
+    {% for obj in object_list %}
+        <div class="card my-3">
+          <h5 class="card-header"><a href="{{ obj.url }}">{{ obj.title }}</a></h5>
+          <div class="card-body">
+            <p class="card-text">{{ obj.description }}</p>
+              <p>{{ obj.city.name }} | {{ obj.language.name }} | {{ obj.timestamp }}</p>
+          </div>
+        </div>
+    {% endfor %}
+
+
+<form action="">
+    <label for="fname">Город</label><br>
+    <input type="text" id="fname" name="fname"><br>
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}
