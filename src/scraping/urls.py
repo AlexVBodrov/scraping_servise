@@ -1,4 +1,4 @@
-"""scraping_service URL Configuration
+"""scraping URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -13,13 +13,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
-from src.accounts.views import view_account
 
+from django.urls import path
+from .views import home_view, view_all_vacancy
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('scraping.urls')),
-    path('account/', include('accounts.urls')),
+    path('', home_view, name='home'),
+    path('all_vacancy/', view_all_vacancy, name='all_vacancy'),
 ]

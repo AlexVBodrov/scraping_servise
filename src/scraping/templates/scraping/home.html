@@ -6,26 +6,40 @@
 
 {%  block body %}
 
-    <h1>Джанго Home Page SCR servise</h1>
-    <h4>Сегодня : {{ date }}</h4>
-    <h4>Имя пользователя : {{ name }}</h4>
+    <h1 class="text-center">Джанго Home Page SCR servise</h1>
+    <h4 class="text-center">Сегодня : {{ date }}</h4>
+    <h4 class="text-center">Имя пользователя : {{ name }}</h4>
+<br><hr>
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <h2 class="text-center">Поиск Вакансий :</h2>
+             <form method="GET" action="">
+                 <div class="form-group">
+            <!--    {% csrf_token %}-->
+                    {{ form.as_p }}
+                 </div>
+                <button type="submit" class="btn btn-primary">Найти вакансии</button>
+            </form>
+        </div>
+    </div>
+
+
     <br><hr>
 
-    <h4>Вакансии</h4>
+    <h2 class="text-center">Вакансии :</h2>
+    <br>
     {% for obj in object_list %}
         <div class="card my-3">
           <h5 class="card-header"><a href="{{ obj.url }}">{{ obj.title }}</a></h5>
           <div class="card-body">
+              <h6>{{ obj.company }}</h6>
             <p class="card-text">{{ obj.description }}</p>
+              <p>{{ obj.vacancy.company }}</p>
               <p>{{ obj.city.name }} | {{ obj.language.name }} | {{ obj.timestamp }}</p>
           </div>
         </div>
+    {% empty %}
+        <h3 class="text-center">К сожалению, по вашему запросу ничего не найденно</h3>
     {% endfor %}
 
-
-<form action="">
-    <label for="fname">Город</label><br>
-    <input type="text" id="fname" name="fname"><br>
-    <input type="submit" value="Submit">
-</form>
 {% endblock %}

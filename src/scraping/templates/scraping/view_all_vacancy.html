@@ -1,0 +1,26 @@
+{% extends 'scraping/base.html' %}
+
+{% block title %}
+        Джанго Home Page SCR servise
+{% endblock %}
+
+{%  block body %}
+
+    <h1>Джанго Home Page SCR servise</h1>
+    <h4>Сегодня : {{ date }}</h4>
+    <h4>Имя пользователя : {{ name }}</h4>
+<br>
+<hr>
+    <h4>Все Вакансии</h4><br>
+    {% for obj in object_list %}
+        <div class="card my-3">
+          <h5 class="card-header"><a href="{{ obj.url }}">{{ obj.title }}</a></h5>
+          <div class="card-body">
+            <h6>Кампания : {{ obj.company }}</h6>
+            <p class="card-text">{{ obj.description }}</p>
+              <p>{{ obj.city.name }} | {{ obj.language.name }} | {{ obj.timestamp }}</p>
+          </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}
